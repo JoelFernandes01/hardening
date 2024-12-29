@@ -1,7 +1,6 @@
 #!/bin/bash
 USER=$1
 $USER
-$SSH_PORT=2223
 
 echo "Esse script foi desenvolvido para ambientes linux usando distribuições Debian ou Ubuntu"
 echo "Atualizando pacotes do servidor e instalando o UFW (Uncomplicated Firewall)"
@@ -27,7 +26,7 @@ sudo sed -i 's/X11Forwarding yes/X11Forwarding no/' /etc/ssh/sshd_config
 sudo sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
 sudo sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding no/' /etc/ssh/sshd_config
 sudo sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
-sudo sed -i 's/#Port 22/Port $SSH_PORT/' /etc/ssh/sshd_config
+sudo sed -i 's/#Port 22/Port 2223/' /etc/ssh/sshd_config
 
 echo "Ativando o Uncomplicated Firewall"
 sudo ufw --force enable

@@ -29,7 +29,7 @@ sudo sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 sudo sed -i 's/#Port 22/Port 2223/' /etc/ssh/sshd_config
 
 echo "Ativando o Uncomplicated Firewall"
-sudo ufw enable
+sudo ufw --force enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 

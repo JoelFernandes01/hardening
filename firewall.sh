@@ -1,7 +1,7 @@
 #!/bin/bash
 USER=$1
 $USER
-SSH_PORT=2223
+$SSH_PORT=2223
 
 echo "Esse script foi desenvolvido para ambientes linux usando distribuições Debian ou Ubuntu"
 echo "Atualizando pacotes do servidor e instalando o UFW (Uncomplicated Firewall)"

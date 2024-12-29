@@ -29,7 +29,7 @@ sudo sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 sudo sed -i 's/#Port 22/Port 2223/' /etc/ssh/sshd_config
 
 echo "Ativando o Uncomplicated Firewall"
-sudo ufw --force enable
+sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
@@ -39,7 +39,7 @@ sudo ufw logging medium
 echo "Configurando regras no UFW"
 ufw allow in on lo comment 'Liberando comunicação na interface loopbak'
 ufw allow out on lo comment 'Liberando comunicação na interface loopbak'
-sudo ufw allow $SSH_PORT/tcp comment 'Liberando a porta de acesso SSH'
+sudo ufw allow 2223/tcp comment 'Liberando a porta de acesso SSH'
 sudo ufw allow out 53/udp comment 'Liberando a saida para consulta do DNS'
 sudo ufw allow out 123/udp comment 'Liberando a saida para sincronismo do NTP'
 

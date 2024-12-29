@@ -65,3 +65,29 @@ sshd: 192.168.1.0/24: spawn /bin/echo "$(date) | Serviço Remoto %d | Host Remot
 
 echo "Instalar o Fail2Ban para proteção a acesso SSH"
 sudo apt install fail2ban -y
+
+echo "Configurando o Fail2ban para proteção de acesso SSH"
+sudo tee /etc/fail2ban/jail.local >> /dev/null <<EOL
+[sshd]
+enabled = true
+port = $SSH
+logpath = %(sshd_log)s
+maxretry = 3
+bantime = 3600
+EOL
+sudo systemctl restart fail2ban
+
+echo "Definindo permissões"
+sudo chmod 644 /etc/passwd
+sudo chmod 600 /etc/shadow
+
+echo "Ativando atualizações automáticas de segurança"
+sudo apt install unattended-upgrades -y
+sudo dpkg-reconfigure -plow unattended-upgrades -y
+
+echo "Reiniciando os serviços UFW e SSH"
+systemctl restart ssh && systemctl restart ufw
+
+
+
+
